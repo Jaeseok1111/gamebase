@@ -7,15 +7,39 @@
             "type": "flutter",
             "command": "flutter",
             "args": [
+                "pub",
+                "get"
+            ],
+            "problemMatcher": [],
+            "label": "flutter: flutter pub get",
+            "detail": ""
+        },
+        {
+            "type": "flutter",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "run",
+                "flutter_launcher_icons"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "label": "flutter: flutter pub update icon",
+            "detail": ""
+        },
+        {
+            "type": "flutter",
+            "command": "flutter",
+            "args": [
                 "build",
                 "web",
                 "--base-href=/_/",
-                "--output=dist",
+                "--output=dist"
             ],
             "group": "build",
             "problemMatcher": [],
             "label": "flutter: flutter build web",
             "detail": ""
-        }
+        },
     ]
 }
