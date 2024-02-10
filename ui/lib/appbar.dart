@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-import 'colors.dart';
+import 'styles.dart';
 
 enum AppMenu { collections, logs, settings }
 
@@ -78,21 +78,32 @@ class _Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          context.beamToNamed("/");
-        },
-        child: SizedBox(
-          width: 45,
-          height: 45,
-          child: Center(
-            child: Image.asset(
-              "assets/logo.png",
-              width: 45,
-              height: 45,
-            ),
+    return ElevatedButton(
+      clipBehavior: Clip.antiAlias,
+      style: ElevatedButton.styleFrom(
+        alignment: Alignment.center,
+        elevation: 0.0,
+        side: BorderSide.none,
+        splashFactory: NoSplash.splashFactory,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        padding: const EdgeInsets.all(0.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(BorderCircular.base),
+        ),
+      ),
+      onPressed: () {
+        context.beamToNamed("/collections");
+      },
+      child: const SizedBox(
+        width: 45,
+        height: 45,
+        child: Center(
+          child: FaIcon(
+            FontAwesomeIcons.scroll,
+            color: MyColors.primary,
+            size: 40,
           ),
         ),
       ),
@@ -100,7 +111,7 @@ class _Logo extends StatelessWidget {
   }
 }
 
-class _AppBarMenu extends StatefulWidget {
+class _AppBarMenu extends StatelessWidget {
   const _AppBarMenu({
     required this.icon,
     required this.tooltip,
@@ -114,65 +125,33 @@ class _AppBarMenu extends StatefulWidget {
   final bool selected;
 
   @override
-  State<_AppBarMenu> createState() => _AppBarMenuState();
-}
-
-class _AppBarMenuState extends State<_AppBarMenu> {
-  bool _onMouseHover = false;
-  bool _onPanDown = false;
-
-  @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (event) => setState(() {
-        _onMouseHover = true;
-      }),
-      onExit: (event) => setState(() {
-        _onMouseHover = false;
-      }),
-      child: GestureDetector(
-        onTap: () {
-          context.beamToNamed(widget.route);
-        },
-        onPanDown: (details) => setState(() {
-          _onPanDown = true;
-        }),
-        onPanEnd: (details) => setState(() {
-          _onPanDown = false;
-        }),
-        onPanCancel: () => setState(() {
-          _onPanDown = false;
-        }),
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          width: 45,
-          height: 45,
-          decoration: ShapeDecoration(
-            color: widget.selected
-                ? Colors.white
-                : _onPanDown
-                    ? MyColors.baseAlt2Color
-                    : _onMouseHover
-                        ? MyColors.baseAlt1Color
-                        : Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: BorderSide(
-                width: 2,
-                color: widget.selected ? MyColors.primary : Colors.transparent,
-              ),
-            ),
-          ),
-          child: Center(
-            child: Icon(
-              widget.icon,
-              color: MyColors.primary,
-              size: 20,
-            ),
+    return IconButton(
+      icon: FaIcon(
+        icon,
+        color: MyColors.primary,
+        size: 20,
+      ),
+      tooltip: tooltip,
+      style: IconButton.styleFrom(
+        alignment: Alignment.center,
+        fixedSize: const Size(45, 45),
+        padding: EdgeInsets.zero,
+        hoverColor: MyColors.baseAlt1Color,
+        highlightColor: MyColors.baseAlt2Color,
+        focusColor: MyColors.baseAlt2Color,
+        splashFactory: NoSplash.splashFactory,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(BorderCircular.lg),
+          side: BorderSide(
+            width: 2,
+            color: selected ? MyColors.primary : Colors.transparent,
           ),
         ),
       ),
+      onPressed: () {
+        context.beamToNamed(route);
+      },
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' hide AppBar;
 
-import 'colors.dart';
-import 'collection/view/collection_page.dart';
-import 'log/view/log_page.dart';
-import 'setting/view/setting_page.dart';
+import 'pages/collection/view/collection_page.dart';
+import 'pages/log/view/log_page.dart';
+import 'pages/setting/view/settings_page.dart';
+import 'styles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,18 +18,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'gamebase.io',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primary),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: MyColors.primary,
+          background: Colors.white,
+        ),
         useMaterial3: true,
       ),
       routeInformationParser: BeamerParser(),
       routerDelegate: BeamerDelegate(
+        initialPath: "/collections",
         transitionDelegate: const NoAnimationTransitionDelegate(),
         locationBuilder: RoutesLocationBuilder(
           routes: {
-            '/': (context, state, data) => const BeamPage(
-                  title: "collections",
-                  child: CollectionViewPage(),
-                ),
             '/collections': (context, state, data) => const BeamPage(
                   title: "collections",
                   child: CollectionViewPage(),

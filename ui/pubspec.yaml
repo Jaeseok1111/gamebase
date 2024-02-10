@@ -16,6 +16,7 @@ dependencies:
   flutter_svg: ^2.0.9
   font_awesome_flutter: ^10.7.0
   beamer: ^1.6.0
+  easy_rich_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:
