@@ -141,7 +141,9 @@ class _Footer extends StatelessWidget {
         children: [
           TextButton(
             "Cancel",
-            fontColor: MyColors.primary,
+            styleForm: const TextButtonStyleForm(
+              fontColor: MyColors.primary,
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },

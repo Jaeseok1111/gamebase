@@ -1,18 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gap/gap.dart';
+part of 'forms.dart';
 
-class FormSwitchField extends StatelessWidget {
+class FormSwitchField extends StatefulWidget {
   const FormSwitchField({
     super.key,
     required this.label,
-    required this.value,
     required this.onChanged,
   });
 
   final String label;
-  final bool value;
   final void Function(bool value) onChanged;
+
+  @override
+  State<FormSwitchField> createState() => _FormSwitchFieldState();
+}
+
+class _FormSwitchFieldState extends State<FormSwitchField> {
+  bool _value = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +28,21 @@ class FormSwitchField extends StatelessWidget {
           FittedBox(
             fit: BoxFit.fitHeight,
             child: Switch(
-              value: value,
-              onChanged: onChanged,
+              value: _value,
+              splashRadius: 0.0,
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+                  widget.onChanged(value);
+                });
+              },
               activeColor: Colors.white,
               activeTrackColor: MyColors.success,
             ),
           ),
           const Gap(10),
           Text(
-            label,
+            widget.label,
             style: const TextStyle(
               color: MyColors.hintColor,
               fontSize: 14,

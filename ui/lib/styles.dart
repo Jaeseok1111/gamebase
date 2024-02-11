@@ -12,6 +12,7 @@ class MyColors {
 
   static const Color danger = Color(0xFFe34562);
   static const Color success = Color(0xFF32ad84);
+  static const Color warning = Color(0xFFff944d);
 }
 
 class Spacing {
@@ -24,4 +25,10 @@ class BorderCircular {
   static const base = 4.0;
   static const lg = 12.0;
   static const button = 4.0;
+  static const buttonHeight = 40.0;
+}
+
+class FontSize {
+  static const base = 14.5;
+  static const sm = 13.0;
 }

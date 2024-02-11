@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gamebase_ui/styles.dart';
 
-class Button extends StatelessWidget {
-  const Button({
-    super.key,
-    required this.padding,
-    required this.child,
-    required this.onPressed,
+class ButtonStyleForm {
+  const ButtonStyleForm({
     this.size,
+    this.padding = EdgeInsets.zero,
     this.borderWidth = 1.0,
     this.borderRadius = BorderCircular.base,
     this.borderColor = MyColors.primary,
@@ -30,9 +27,20 @@ class Button extends StatelessWidget {
   final Color focusedColor;
   final Color pressedColor;
   final Color disabledColor;
+}
+
+class Button extends StatelessWidget {
+  const Button({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.styleForm = const ButtonStyleForm(),
+  });
 
   final Widget child;
   final VoidCallback? onPressed;
+
+  final ButtonStyleForm styleForm;
 
   @override
   Widget build(BuildContext context) {
@@ -41,32 +49,35 @@ class Button extends StatelessWidget {
       style: ButtonStyle(
         elevation: MaterialStateProperty.all(0.0),
         alignment: Alignment.center,
-        fixedSize: MaterialStateProperty.all(size),
-        padding: MaterialStateProperty.all(padding),
+        fixedSize: MaterialStateProperty.all(styleForm.size),
+        padding: MaterialStateProperty.all(styleForm.padding),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(
-          side: BorderSide(color: borderColor, width: borderWidth),
-          borderRadius: BorderRadius.circular(borderRadius),
+          side: BorderSide(
+            color: styleForm.borderColor,
+            width: styleForm.borderWidth,
+          ),
+          borderRadius: BorderRadius.circular(styleForm.borderRadius),
         )),
         splashFactory: NoSplash.splashFactory,
         shadowColor: MaterialStateProperty.all(Colors.transparent),
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.hovered)) {
-            return hoverColor;
+            return styleForm.hoverColor;
           }
 
           if (states.contains(MaterialState.focused)) {
-            return focusedColor;
+            return styleForm.focusedColor;
           }
 
           if (states.contains(MaterialState.pressed)) {
-            return pressedColor;
+            return styleForm.pressedColor;
           }
 
           if (states.contains(MaterialState.disabled)) {
-            return disabledColor;
+            return styleForm.disabledColor;
           }
 
-          return color;
+          return styleForm.color;
         }),
       ),
       child: child,

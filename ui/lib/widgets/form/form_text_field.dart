@@ -1,7 +1,4 @@
-import 'package:easy_rich_text/easy_rich_text.dart';
-import 'package:flutter/material.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gap/gap.dart';
+part of 'forms.dart';
 
 class FormTextField extends StatefulWidget {
   const FormTextField({
@@ -110,36 +107,7 @@ class _FormTextFieldState extends State<FormTextField> {
           ),
         ),
         if (widget.helpText != null) const Gap(10),
-        if (widget.helpText != null)
-          EasyRichText(
-            widget.helpText!,
-            defaultStyle: const TextStyle(
-              color: MyColors.hintColor,
-              fontSize: 13,
-            ),
-            patternList: [
-              EasyRichTextPattern(
-                targetString: "(<code>)(.*?)(<code>)",
-                matchBuilder: (BuildContext context, RegExpMatch? match) {
-                  return TextSpan(
-                    children: [
-                      const TextSpan(text: " "),
-                      TextSpan(
-                        text: match?[0]?.replaceAll("<code>", " "),
-                        style: const TextStyle(
-                          fontSize: 13,
-                          height: 1.5,
-                          color: MyColors.hintColor,
-                          backgroundColor: MyColors.baseAlt2Color,
-                        ),
-                      ),
-                      const TextSpan(text: " "),
-                    ],
-                  );
-                },
-              ),
-            ],
-          )
+        if (widget.helpText != null) SmartText(widget.helpText!)
       ],
     );
   }
