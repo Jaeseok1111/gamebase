@@ -10,6 +10,7 @@ class MyColors {
 
   static const Color hintColor = Color(0xFF666f75);
 
+  static const Color info = Color(0xFF5499e8);
   static const Color danger = Color(0xFFe34562);
   static const Color success = Color(0xFF32ad84);
   static const Color warning = Color(0xFFff944d);

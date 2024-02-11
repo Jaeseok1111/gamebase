@@ -40,16 +40,18 @@ class _SearchFieldState extends State<SearchField> {
             width: double.maxFinite,
             height: 45,
             decoration: ShapeDecoration(
-              color: MyColors.baseAlt2Color,
+              color: MyColors.baseAlt1Color,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                   BorderCircular.buttonHeight,
                 ),
               ),
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 14,
-              vertical: 5,
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 10,
+              top: 5,
+              bottom: 5,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -130,11 +132,14 @@ class _SearchFieldState extends State<SearchField> {
           ),
         ),
         const Gap(10),
-        SmartText(
-          "Default log levels: <code>-4:DEBUG<code> <code>0:INFO<code> <code>4:WARN<code> <code>8:ERROR<code>",
-          style: const TextStyle(
-            color: MyColors.hintColor,
-            fontSize: 12,
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: SmartText(
+            "Default log levels: <code>-4:DEBUG<code> <code>0:INFO<code> <code>4:WARN<code> <code>8:ERROR<code>",
+            style: const TextStyle(
+              color: MyColors.hintColor,
+              fontSize: 12,
+            ),
           ),
         ),
       ],

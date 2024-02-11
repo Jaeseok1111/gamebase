@@ -16,7 +16,7 @@ class RotateAnimation extends StatefulWidget {
 }
 
 class _RotateAnimationState extends State<RotateAnimation>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: widget.duration,
