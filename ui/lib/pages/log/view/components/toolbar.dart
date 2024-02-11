@@ -6,7 +6,12 @@ import 'package:gamebase_ui/widgets/form/forms.dart';
 import 'package:gap/gap.dart';
 
 class ToolBar extends StatelessWidget {
-  const ToolBar({super.key});
+  const ToolBar({
+    super.key,
+    required this.onRefresh,
+  });
+
+  final void Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +78,7 @@ class ToolBar extends StatelessWidget {
           style: IconButton.styleFrom(
             fixedSize: const Size(40, 40),
           ),
-          onPressed: () {},
+          onPressed: onRefresh,
         ),
       ],
     );

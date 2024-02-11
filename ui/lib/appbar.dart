@@ -34,37 +34,45 @@ class AppBar extends StatelessWidget {
           children: [
             const _Logo(),
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 35),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _AppBarMenu(
-                        icon: FontAwesomeIcons.database,
-                        tooltip: "Collections",
-                        route: "/collections",
-                        selected: menu == AppMenu.collections,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 35),
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          _AppBarMenu(
+                            icon: FontAwesomeIcons.database,
+                            tooltip: "Collections",
+                            route: "/collections",
+                            selected: menu == AppMenu.collections,
+                          ),
+                          const Gap(20),
+                          _AppBarMenu(
+                            icon: FontAwesomeIcons.chartSimple,
+                            tooltip: "Logs",
+                            route: "/logs",
+                            selected: menu == AppMenu.logs,
+                          ),
+                          const Gap(20),
+                          _AppBarMenu(
+                            icon: FontAwesomeIcons.screwdriverWrench,
+                            tooltip: "Settings",
+                            route: "/settings",
+                            selected: menu == AppMenu.settings,
+                          ),
+                        ],
                       ),
-                      const Gap(20),
-                      _AppBarMenu(
-                        icon: FontAwesomeIcons.chartSimple,
-                        tooltip: "Logs",
-                        route: "/logs",
-                        selected: menu == AppMenu.logs,
-                      ),
-                      const Gap(20),
-                      _AppBarMenu(
-                        icon: FontAwesomeIcons.screwdriverWrench,
-                        tooltip: "Settings",
-                        route: "/settings",
-                        selected: menu == AppMenu.settings,
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
             ),
-            const Spacer(),
             const _Avatar(),
           ],
         ),

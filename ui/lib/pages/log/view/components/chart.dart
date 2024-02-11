@@ -1,131 +1,156 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gamebase_ui/styles.dart';
 import 'package:gamebase_ui/util/format.dart';
+import 'package:gamebase_ui/widgets/animation/rotate.dart';
 
-class LogsChart extends StatefulWidget {
+class LogsChart extends StatelessWidget {
   const LogsChart({super.key});
 
   @override
-  State<LogsChart> createState() => _LogsChartState();
-}
-
-class _LogsChartState extends State<LogsChart> {
-  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.maxFinite,
-      height: 200,
-      child: LineChart(
-        LineChartData(
-          minY: 0,
-          minX: 2024021100,
-          borderData: FlBorderData(
-            show: true,
-            border: Border.all(color: MyColors.baseAlt2Color),
-          ),
-          titlesData: FlTitlesData(
-            show: true,
-            rightTitles: const AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
-            ),
-            topTitles: const AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
-            ),
-            leftTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 30,
-                interval: 500,
-                getTitlesWidget: leftTitleWidgets,
+    var spots = const [
+      FlSpot(2024021100, 200),
+      FlSpot(2024021101, 500),
+      FlSpot(2024021102, 1200),
+      FlSpot(2024021105, 200),
+      FlSpot(2024021112, 400),
+      FlSpot(2024021113, 1000),
+      FlSpot(2024021114, 300),
+    ];
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 1)),
+      builder: (context, snapshot) {
+        return SizedBox(
+          width: double.maxFinite,
+          height: 200,
+          child: Stack(
+            children: [
+              LineChart(
+                duration: Duration.zero,
+                _loadData(snapshot.connectionState == ConnectionState.waiting
+                    ? []
+                    : spots),
               ),
-            ),
-            bottomTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                interval: 1,
-                getTitlesWidget: bottomTitleWidgets,
-              ),
-            ),
-          ),
-          lineTouchData: LineTouchData(
-            getTouchedSpotIndicator: (barData, spotIndexes) {
-              return spotIndexes.map((spotIndex) {
-                return TouchedSpotIndicatorData(
-                  const FlLine(color: Colors.transparent),
-                  FlDotData(
-                    show: true,
-                    getDotPainter: (spot, percent, barData, index) {
-                      return FlDotCirclePainter(
-                        radius: 8,
-                        color: MyColors.danger,
-                      );
-                    },
+              if (snapshot.connectionState == ConnectionState.waiting)
+                const Center(
+                  child: RotateAnimation(
+                    duration: Duration(milliseconds: 500),
+                    child: FaIcon(
+                      FontAwesomeIcons.circleNotch,
+                      color: MyColors.primary,
+                      size: 40,
+                    ),
                   ),
-                );
-              }).toList();
-            },
-            touchTooltipData: LineTouchTooltipData(
-              tooltipBgColor: MyColors.primary,
-              fitInsideHorizontally: true,
-              tooltipRoundedRadius: BorderCircular.base,
-              getTooltipItems: (touchedSpots) {
-                return touchedSpots.map((spot) {
-                  DateTime time = Format.int2DateTime(spot.x.toInt())!;
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
-                  return LineTooltipItem(
-                    "${time.year}년 ${time.month}월 ${time.day}일 ${time.hour}시",
-                    const TextStyle(
+  LineChartData _loadData(List<FlSpot> spots) {
+    return LineChartData(
+      minY: 0,
+      minX: 2024021100,
+      borderData: FlBorderData(
+        show: true,
+        border: Border.all(color: MyColors.baseAlt2Color),
+      ),
+      titlesData: FlTitlesData(
+        show: true,
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            interval: 500,
+            getTitlesWidget: leftTitleWidgets,
+          ),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            interval: 1,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
+        ),
+      ),
+      lineTouchData: LineTouchData(
+        getTouchedSpotIndicator: (barData, spotIndexes) {
+          return spotIndexes.map((spotIndex) {
+            return TouchedSpotIndicatorData(
+              const FlLine(color: Colors.transparent),
+              FlDotData(
+                show: true,
+                getDotPainter: (spot, percent, barData, index) {
+                  return FlDotCirclePainter(
+                    radius: 8,
+                    color: MyColors.danger,
+                  );
+                },
+              ),
+            );
+          }).toList();
+        },
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: MyColors.primary,
+          fitInsideHorizontally: true,
+          tooltipRoundedRadius: BorderCircular.base,
+          getTooltipItems: (touchedSpots) {
+            return touchedSpots.map((spot) {
+              DateTime time = Format.int2DateTime(spot.x.toInt())!;
+
+              return LineTooltipItem(
+                "${time.year}년 ${time.month}월 ${time.day}일 ${time.hour}시",
+                const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+                children: [
+                  const TextSpan(
+                    text: "Total requests: ",
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.normal,
                     ),
-                    children: [
-                      const TextSpan(
-                        text: "Total requests: ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                      TextSpan(
-                        text: spot.y.toInt().toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
-                  );
-                }).toList();
-              },
-            ),
-          ),
-          lineBarsData: [
-            LineChartBarData(
-              color: MyColors.danger,
-              spots: const [
-                FlSpot(2024021100, 200),
-                FlSpot(2024021101, 500),
-                FlSpot(2024021102, 1200),
-                FlSpot(2024021105, 200),
-                FlSpot(2024021112, 400),
-                FlSpot(2024021113, 1000),
-                FlSpot(2024021114, 300),
-              ],
-              barWidth: 1.5,
-              isStrokeCapRound: true,
-              dotData: const FlDotData(show: false),
-              belowBarData: BarAreaData(
-                show: true,
-                color: MyColors.danger.withOpacity(0.1),
-              ),
-            ),
-          ],
+                  ),
+                  TextSpan(
+                    text: spot.y.toInt().toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              );
+            }).toList();
+          },
         ),
       ),
+      lineBarsData: [
+        LineChartBarData(
+          color: MyColors.danger,
+          spots: spots,
+          barWidth: 1.5,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(show: false),
+          belowBarData: BarAreaData(
+            show: true,
+            color: MyColors.danger.withOpacity(0.1),
+          ),
+        ),
+      ],
     );
   }
 
