@@ -2,19 +2,19 @@ import 'package:design/design.dart';
 import 'package:flutter/material.dart' hide TextButton;
 import 'package:gamebase_ui/pages/layout/layout.dart';
 
-import 'components/chart.dart';
-import 'components/search.dart';
-import 'components/table.dart';
-import 'components/toolbar.dart';
+import 'widgets/chart.dart';
+import 'widgets/search.dart';
+import 'widgets/table.dart';
+import 'widgets/toolbar.dart';
 
-class LogsViewPage extends StatefulWidget {
-  const LogsViewPage({super.key});
+class LogDatabaseViewPage extends StatefulWidget {
+  const LogDatabaseViewPage({super.key});
 
   @override
-  State<LogsViewPage> createState() => _LogsViewPageState();
+  State<LogDatabaseViewPage> createState() => _LogsViewPageState();
 }
 
-class _LogsViewPageState extends State<LogsViewPage> {
+class _LogsViewPageState extends State<LogDatabaseViewPage> {
   var _chartKey = Object();
   var _tableKey = Object();
 

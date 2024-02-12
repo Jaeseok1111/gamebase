@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gamebase_ui/pages/layout/layout.dart';
 
-class CollectionViewPage extends StatelessWidget {
-  const CollectionViewPage({super.key});
+class DatabaseViewPage extends StatelessWidget {
+  const DatabaseViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {

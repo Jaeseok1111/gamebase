@@ -1,10 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/collection/view/collection_page.dart';
-import 'pages/log/view/logs_view_page.dart';
+import 'pages/collection/database_view_page.dart';
+import 'pages/log/log_database_view_page.dart';
 import 'pages/login/login_page.dart';
-import 'pages/setting/view/settings_page.dart';
+import 'pages/setting/settings_view.dart';
 
 class BeamerLocations extends BeamLocation<BeamState> {
   BeamerLocations(RouteInformation routeInformation) : super(routeInformation);
@@ -24,19 +24,19 @@ class BeamerLocations extends BeamLocation<BeamState> {
         const BeamPage(
           key: ValueKey("collections"),
           title: title,
-          child: CollectionViewPage(),
+          child: DatabaseViewPage(),
         ),
       if (state.uri.pathSegments.contains("logs"))
         const BeamPage(
           key: ValueKey("logs"),
           title: title,
-          child: LogsViewPage(),
+          child: LogDatabaseViewPage(),
         ),
       if (state.uri.pathSegments.contains("settings"))
         const BeamPage(
           key: ValueKey("settings"),
           title: title,
-          child: SettingsPage(),
+          child: SettingsView(),
         ),
     ];
   }
