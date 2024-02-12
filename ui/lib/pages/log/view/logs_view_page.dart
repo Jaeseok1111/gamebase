@@ -9,14 +9,14 @@ import 'components/search.dart';
 import 'components/table.dart';
 import 'components/toolbar.dart';
 
-class LogViewPage extends StatefulWidget {
-  const LogViewPage({super.key});
+class LogsViewPage extends StatefulWidget {
+  const LogsViewPage({super.key});
 
   @override
-  State<LogViewPage> createState() => _LogViewPageState();
+  State<LogsViewPage> createState() => _LogsViewPageState();
 }
 
-class _LogViewPageState extends State<LogViewPage> {
+class _LogsViewPageState extends State<LogsViewPage> {
   var _chartKey = Object();
   var _tableKey = Object();
 

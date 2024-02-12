@@ -1,9 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart' hide AppBar;
 
-import 'pages/collection/view/collection_page.dart';
-import 'pages/log/view/log_page.dart';
-import 'pages/setting/view/settings_page.dart';
+import 'beamer_locations.dart';
 import 'styles.dart';
 
 void main() {
@@ -28,22 +26,8 @@ class MyApp extends StatelessWidget {
       routerDelegate: BeamerDelegate(
         initialPath: "/collections",
         transitionDelegate: const NoAnimationTransitionDelegate(),
-        locationBuilder: RoutesLocationBuilder(
-          routes: {
-            '/collections': (context, state, data) => const BeamPage(
-                  title: "collections",
-                  child: CollectionViewPage(),
-                ),
-            '/logs': (context, state, data) => const BeamPage(
-                  title: "logs",
-                  child: LogViewPage(),
-                ),
-            '/settings': (context, state, data) => const BeamPage(
-                  title: "settings",
-                  child: SettingsPage(),
-                ),
-          },
-        ),
+        locationBuilder: (routeInformation, _) =>
+            BeamerLocations(routeInformation),
       ),
     );
   }
