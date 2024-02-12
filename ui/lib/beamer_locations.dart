@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/collection/view/collection_page.dart';
 import 'pages/log/view/logs_view_page.dart';
+import 'pages/login/login_page.dart';
 import 'pages/setting/view/settings_page.dart';
 
 class BeamerLocations extends BeamLocation<BeamState> {
@@ -13,6 +14,12 @@ class BeamerLocations extends BeamLocation<BeamState> {
     const title = "gamebase.io";
 
     return [
+      if (state.uri.pathSegments.contains("login"))
+        const BeamPage(
+          key: ValueKey("login"),
+          title: title,
+          child: LoginPage(),
+        ),
       if (state.uri.pathSegments.contains("collections"))
         const BeamPage(
           key: ValueKey("collections"),
@@ -36,6 +43,7 @@ class BeamerLocations extends BeamLocation<BeamState> {
 
   @override
   List<Pattern> get pathPatterns => [
+        "/login",
         "/collections",
         "/logs",
         "/settings",

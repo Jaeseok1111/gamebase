@@ -7,11 +7,18 @@ class FormTextField extends StatefulWidget {
     required this.label,
     required this.required,
     required this.helpText,
+    this.onChanged,
+    this.obscureText = false,
+    this.autofillHints,
   });
 
   final String label;
   final bool required;
   final String? helpText;
+  final void Function(String value)? onChanged;
+
+  final bool obscureText;
+  final Iterable<String>? autofillHints;
 
   @override
   State<FormTextField> createState() => _FormTextFieldState();
@@ -84,7 +91,10 @@ class _FormTextFieldState extends State<FormTextField> {
                   margin: const EdgeInsets.only(top: 5),
                   alignment: Alignment.centerLeft,
                   child: TextField(
+                    obscureText: widget.obscureText,
+                    autofillHints: widget.autofillHints,
                     onTap: () => setState(() {}),
+                    onChanged: widget.onChanged,
                     focusNode: _focus,
                     cursorColor: MyColors.hintColor,
                     cursorHeight: 20,
