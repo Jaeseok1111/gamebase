@@ -1,8 +1,8 @@
 import 'package:beamer/beamer.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart' hide AppBar;
 
 import 'beamer_locations.dart';
-import 'styles.dart';
 
 void main() {
   runApp(const MyApp());

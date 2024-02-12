@@ -1,8 +1,6 @@
+import 'package:design/design.dart';
 import 'package:flutter/material.dart' hide TextButton;
-import 'package:gamebase_ui/appbar.dart';
-import 'package:gamebase_ui/layout.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gap/gap.dart';
+import 'package:gamebase_ui/pages/layout/layout.dart';
 
 import 'components/chart.dart';
 import 'components/search.dart';

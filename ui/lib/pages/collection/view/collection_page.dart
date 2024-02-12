@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamebase_ui/appbar.dart';
-import 'package:gamebase_ui/layout.dart';
+import 'package:gamebase_ui/pages/layout/layout.dart';
 
 class CollectionViewPage extends StatelessWidget {
   const CollectionViewPage({super.key});

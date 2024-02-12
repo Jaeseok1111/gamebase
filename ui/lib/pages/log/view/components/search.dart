@@ -1,9 +1,5 @@
+import 'package:design/design.dart';
 import 'package:flutter/material.dart' hide TextButton;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gamebase_ui/widgets/button/text_button.dart';
-import 'package:gamebase_ui/widgets/text/smart_text.dart';
-import 'package:gap/gap.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({super.key});

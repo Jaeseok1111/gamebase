@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gamebase_ui/widgets/dialog/settings_dialog.dart';
-import 'package:gamebase_ui/widgets/form/forms.dart';
-import 'package:gap/gap.dart';
+import 'package:design/design.dart';
+import 'package:flutter/material.dart' hide AlertDialog;
 
 class ToolBar extends StatelessWidget {
   const ToolBar({
@@ -39,7 +35,7 @@ class ToolBar extends StatelessWidget {
             await showDialog<void>(
               context: context,
               builder: (BuildContext context) {
-                return SettingsDialog(
+                return AlertDialog(
                   future: Future.delayed(const Duration(milliseconds: 500)),
                   title: "Logs settings",
                   children: [

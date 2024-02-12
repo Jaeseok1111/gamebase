@@ -1,6 +1,8 @@
+import 'package:beamer/beamer.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart' hide AppBar;
 
-import 'appbar.dart';
+part 'appbar.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({

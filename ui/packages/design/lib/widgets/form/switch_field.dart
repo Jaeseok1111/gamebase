@@ -1,4 +1,5 @@
-part of 'forms.dart';
+import 'package:design/design.dart';
+import 'package:flutter/material.dart';
 
 class FormSwitchField extends StatefulWidget {
   const FormSwitchField({

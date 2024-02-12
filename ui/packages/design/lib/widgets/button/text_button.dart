@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide TextButton;
-import 'package:gamebase_ui/styles.dart';
+import 'package:design/styles/styles.dart';
 
 import 'button.dart';
 

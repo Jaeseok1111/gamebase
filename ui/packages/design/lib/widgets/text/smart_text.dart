@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamebase_ui/styles.dart';
+import 'package:design/styles/styles.dart';
 
 class _SmartTextPattern {
   const _SmartTextPattern({

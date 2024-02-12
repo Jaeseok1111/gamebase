@@ -1,9 +1,5 @@
-import 'package:data_table_2/data_table_2.dart';
+import 'package:design/design.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gamebase_ui/styles.dart';
-import 'package:gamebase_ui/widgets/animation/rotate.dart';
-import 'package:gap/gap.dart';
 
 class LogsTable extends StatefulWidget {
   const LogsTable({super.key});
